@@ -1,24 +1,13 @@
-from agent.tools.form_tools import format_prefill_result, prefill_form
-from agent.tools.profile_tools import load_profile
+from agent.tools.gmail_tools import format_processing_results, process_new_forms
 
 
 def main():
-    print("=== Paperwork Pilot ===")
-    print("Checking a newly detected demo form...\n")
+    print("=== Paperwork Pilot Background Agent ===")
+    print("Scanning the Forms inbox...\n")
 
-    detected_form_fields = [
-        "full_name",
-        "date_of_birth",
-        "address",
-        "phone",
-        "email",
-        "college_roll_number",
-    ]
+    results = process_new_forms()
 
-    profile = load_profile()
-    result = prefill_form(detected_form_fields, profile)
-
-    print(format_prefill_result(result))
+    print(format_processing_results(results))
 
 
 if __name__ == "__main__":
