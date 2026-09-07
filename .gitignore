@@ -1,0 +1,16 @@
+# Secret environment variables
+.env
+
+# Python generated files
+__pycache__/
+*.pyc
+.venv/
+
+# Frontend generated files
+frontend/node_modules/
+frontend/dist/
+
+# Local generated project data
+data/reminders.db
+data/outputs/
+*.log
