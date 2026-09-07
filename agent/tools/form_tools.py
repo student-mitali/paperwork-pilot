@@ -1,3 +1,4 @@
+from strands import tool
 from agent.tools.profile_tools import load_profile
 
 
@@ -64,9 +65,23 @@ def format_prefill_result(result: dict) -> str:
         lines.append("- None")
 
     lines.append("")
+
     if result["needs_confirmation"]:
         lines.append("Action: Notify the user to review the missing fields.")
     else:
         lines.append("Action: Form can be prepared for final user confirmation.")
 
     return "\n".join(lines)
+
+
+@tool
+def autofill_detected_form(form_fields: list[str]) -> dict:
+    """
+    Auto-fill requested form fields from the stored demo profile.
+
+    Use this tool when a new form has been detected and its required
+    fields are known. It returns pre-filled values, missing values, and
+    whether the user must be asked to review the form.
+    """
+    profile = load_profile()
+    return prefill_form(form_fields, profile)
